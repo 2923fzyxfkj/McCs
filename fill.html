@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Summon command - /fill</title>
+        <script>
+            function summon() {
+                // 获取输入框的值
+                var id = document.getElementsByTagName("input")[0].value;
+                var start = document.getElementsByTagName("input")[1].value;
+                var end = document.getElementsByTagName("input")[2].value;
+                // 拼接命令
+                var command = "/fill " + start + " " + end + " "("minecraft:" + id);
+                switch (id, start, end) {
+                    case (id == ""):
+                        alert("ID不能为空")
+                        console.error("Variable \"ID\" is null")
+                    
+                    case (start == ""):
+                        alert("起始不能为空")
+                        console.error("Variable \"Start\" is null")
+                    case (end == ""):arguments[1]
+                        alert("结束不能为空")
+                        console.error("Variable \"End\" is null")
+                    default:
+                        break
+                }
+                // 输出命令
+                alert("命令:" + command)
+                console.log(command)
+                console.log(id)
+                console.log(start)
+                console.log(end)
+            }
+        </script>
+    </head>
+    <body>
+        <!-- 输入框，背景文字为 "ID" -->
+        <input type="text" placeholder="ID">
+        
+        <!-- 输入框，背景文字为 "Position/坐标" -->
+        <input type="text" placeholder="开始位置:">
+        <input type="text" placeholder="结束位置:">
+        
+        <!-- 按钮，文字为 "Summon/生成"，点击时调用 summon() 函数 -->
+        <button onclick="summon()">Summon/生成</button>
+        <a href="Cs.html">Main</a>
+    </body>
+</html>
