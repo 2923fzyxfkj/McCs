@@ -261,3 +261,5 @@ with socketserver.TCPServer(("0.0.0.0", PORT), RedirectHandler) as httpd:
             * Log:
             * 修复用户还是可以访问127.0.0.1:8080的除C盘以外的目录,但是会出现定向错误
             * 修复用户还是可以访问127.0.0.1:8080的除C盘以外的目录,不会出现定向错误   <=   当前
+
+版本列表:[访问](https://github.com/2923fzyxfkj/McCs/releases)
