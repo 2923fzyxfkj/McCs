@@ -3,7 +3,6 @@
 - `McCs`是一个对于《我的世界》命令生成器
     * `McCs`使用`Python`驱动,使用`HTML`网页
     * `McCs`使用`Python`开服后请进入127.0.0.1:8080访问
-* `McCs`源代码
 #### 请 把 这 篇 README 看 完
 - 灵感[来源](https://github.com/kzyqq00-Player/mccg):Github用户kzyqq00-Player的[mccg项目](https://github.com/kzyqq00-Player/mccg)
 ### 当前版本:1.0.0  2024/12/21
