@@ -3,32 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Summon command - /fill</title>
-        <script>
-            function summon() {
-                // 获取输入框的值
-                var id = document.getElementsByTagName("input")[0].value;
-                var player = document.getElementsByTagName("input")[1].value;
-                var nbt = document.getElementsByTagName("input")[2].value;
-                // 拼接命令
-                var command = "/give " + player + " " + id + " " + nbt;
-                switch (id,player,nbt) {  // 虽然不用nbt但是我还要写上以便维护
-                    case (id == ""):
-                        alert("ID不能为空")
-                        console.error("Variable \"id\" is null")
-                    
-                    case (player == ""):
-                        alert("玩家不能为空")
-                        console.error("Variable \"player\" is null")
-                    default:
-                        break
-                }
-                // 输出命令
-                alert("命令:" + command)
-                console.log(command)
-                console.log(id)
-                console.log(nbt)
-            }
-        </script>
+        <script src="./pages.script/give.js" type="module"></script>
     </head>
     <body>
         <!-- 输入框，背景文字为 "ID" -->

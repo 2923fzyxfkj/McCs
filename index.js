@@ -1,9 +1,14 @@
 /**
  * @param {string} command
+ * @param {...string} moreInfo
  */
-export function commandResultProcesser(command) {
+export function commandResultProcesser(command, ...moreInfo) {
     alert(`命令: ${command}\n你可以直接粘贴(Ctrl+V)命令到MC中执行`);
     navigator.clipboard.writeText(command);
+    console.log(command);
+    for (const info of [...moreInfo]) {
+        console.log(info);
+    }
 }
 
 /**
