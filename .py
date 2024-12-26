@@ -1,5 +1,4 @@
-"""
-# 保存为 server.py
+"""# 保存为 server.py
 import http.server
 import socketserver
 from urllib.parse import urlunparse
@@ -19,8 +18,7 @@ class RedirectHandler(http.server.SimpleHTTPRequestHandler):
 
 with socketserver.TCPServer(("0.0.0.0", PORT), RedirectHandler) as httpd:
     print("serving at port", PORT)
-    httpd.serve_forever() # V1.0.0
-"""
+    httpd.serve_forever()""" # V1.0.0
 import http.server
 import socketserver
 from urllib.parse import urlunparse
