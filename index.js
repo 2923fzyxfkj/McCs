@@ -42,15 +42,14 @@ const McCs = (function () {
                                 }
                                 const doc = new DOMParser().parseFromString(text, HTMLMIMEType);
                                 document.body.replaceWith(doc.body);
-                                const scripts = doc.querySelectorAll('script');
-                                scripts.forEach(script => {
+                                doc.querySelectorAll('script').forEach(script => {
                                     if (script.src) {
                                         fetch(script.src, {
                                             headers: {
                                                 accept: 'text/javascript'
                                             }
                                         })
-                                            .then(async response => new Function(await response.text())())
+                                            .then(async response => new Function(await response.text())());
                                     } else {
                                         new Function(script.textContent);
                                     }
