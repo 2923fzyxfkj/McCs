@@ -1,4 +1,3 @@
-/** @type {McCs} */
 const McCs = (function () {
     /** @type {McCs} */
     const exports = {
