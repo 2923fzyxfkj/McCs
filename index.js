@@ -1,17 +1,6 @@
 const McCs = (function () {
-    const createAntiInfiltrateHandler = (/** @type {boolean} */ returnNotInited) => {
-        return (_, key) => {
-            if (inited && !validKeys.includes(key)) {
-                console.warn('bro就你想渗透');
-                return false;
-            } else {
-                return true;
-            }
-        };
-    }
-
     /** @type {(keyof McCs)[]} */
-    const validKeys = ['commandResultProcesser', 'registerRouter', 'HTMLMIMEType', 'summon'];
+    const validExternalKeys = ['summon'];
 
     /** @type {McCs} */
     const exports = new Proxy({
@@ -24,8 +13,8 @@ const McCs = (function () {
             }
         },
         registerRouter(options) {
-            hashes = [...new Set(options.filter(item => typeof item === 'string').concat(options.filter(item => Array.isArray(item)).map(item => item[0])))].concat(hashes);
-            hashHandlers = hashHandlers.concat(options.filter(item => Array.isArray(item)));
+            hashes = [...new Set(options.filter((item) => typeof item === 'string').concat(options.filter((item) => Array.isArray(item)).map((item) => item[0])))].concat(hashes);
+            hashHandlers = hashHandlers.concat(options.filter((item) => Array.isArray(item)));
             if (!registeredFirstRouter) {
                 window.addEventListener('hashchange', hashChangeHandler);
                 registeredFirstRouter = true;
@@ -34,20 +23,48 @@ const McCs = (function () {
         },
         HTMLMIMEType: 'text/html'
     }, {
-        set: createAntiInfiltrateHandler(),
-        setPrototypeOf: createAntiInfiltrateHandler(true),
-        deleteProperty: createAntiInfiltrateHandler(),
-        defineProperty: createAntiInfiltrateHandler()
+        set() {
+            if (!validExternalKeys.includes(arguments[1])) {
+                console.warn('雕虫小技');
+                return false;
+            } else {
+                settingProperty = true; // @ts-expect-error
+                const res = Reflect.set(...arguments);
+                settingProperty = false;
+                return res;
+            }
+        },
+        setPrototypeOf(obj, proto) {
+            if (!inited) {
+                return Reflect.setPrototypeOf(obj, proto);
+            } else {
+                console.warn('看来你挺有经验');
+                return false;
+            }
+        },
+        deleteProperty() {
+            console.warn('孩子你无敌了');
+            return false;
+        },
+        defineProperty() {
+            if (!settingProperty) {
+                console.warn('666');
+                return false;
+            } else { // @ts-expect-error
+                return Reflect.defineProperty(...arguments);
+            }
+            
+        }
     });
 
     const HTMLMIMEType = exports.HTMLMIMEType;
+    let settingProperty = false;
     let inited = false;
     let hashes = [];
     let hashHandlers = [];
     let registeredFirstRouter = false;
 
     Object.setPrototypeOf(exports, null);
-
     inited = true;
 
     const hashChangeHandler = () => {
@@ -66,20 +83,18 @@ const McCs = (function () {
                         console.groupEnd();
                         alert('网络错误! 请重试\n可在控制台查看详情');
                     }
-
                     return response.text();
                 })
                 .then(text => {
                     if (text.startsWith('<!')) {
                         const firstNewlineIndex = text.indexOf('\n');
-
                         text = firstNewlineIndex !== -1 ? text.slice(firstNewlineIndex + 1) : text;
                     }
                     const doc = new DOMParser().parseFromString(text, HTMLMIMEType);
                     document.body.replaceWith(doc.body);
                     doc.querySelectorAll('script').forEach(script => {
                         if (script.type === 'importmap') {
-                            return;
+                            throw new TypeError('不支持importmap');
                         }
                         if (script.src) {
                             if (script.type === 'module') {
@@ -90,18 +105,13 @@ const McCs = (function () {
                                     accept: 'text/javascript'
                                 }
                             })
-                                .then(async response => new Function(await response.text())());
+                                .then(async (response) => new Function(await response.text())());
                         } else {
                             new Function(script.textContent);
                         }
-                        /* script.addEventListener('load', () => {
-                            console.log('加载成功:', script.src);
-                        });
-                        document.head.appendChild(script); */
                     });
                 });
         }
-
         const indexOfHashOfHashesOrHashsAndHandlers = hashes.indexOf(hash);
         if (Array.isArray(indexOfHashOfHashesOrHashsAndHandlers)) {
             const handler = indexOfHashOfHashesOrHashsAndHandlers[1];
