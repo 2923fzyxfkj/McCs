@@ -6,4 +6,6 @@ interface McCs {
         )[]
     ): void;
     summon?(): void;
+
+    readonly HTMLMIMEType: 'text/html';
 }
