@@ -1,6 +1,4 @@
-import { createRouter } from "./index.js";
-
-createRouter([
+McCs.registerRouter([
     'setblock',
     'fill',
     'gamemode',

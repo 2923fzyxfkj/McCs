@@ -3,7 +3,11 @@
         "checkJs": true,
         "target": "ES2016",
         "paths": {
-            "navigo": ["./node_modules/navigo/index.d.ts"]
-        }
+            "navigo": ["./node_modules/navigo/index.d.ts"],
+            "index": ["./types/index.d.ts"]
+        },
+        "types": [
+            "./types/index.d.ts"
+        ]
     }
 }

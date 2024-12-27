@@ -1,6 +1,4 @@
-import { commandResultProcesser } from "../index.js";
-
-function summon() {
+McCs.summon = () => {
     // 获取输入框的值
     var id = document.getElementsByTagName("input")[0].value;
     var player = document.getElementsByTagName("input")[1].value;
@@ -19,5 +17,5 @@ function summon() {
             break
     }
     // 输出命令
-    commandResultProcesser(command, id, player, nbt);
+    McCs.commandResultProcesser(command, id, player, nbt);
 }
