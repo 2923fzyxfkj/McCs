@@ -57,7 +57,6 @@ const McCs = (function () {
         }
     });
 
-    const HTMLMIMEType = exports.HTMLMIMEType;
     let settingProperty = false;
     let inited = false;
     let hashes = [];
@@ -72,7 +71,7 @@ const McCs = (function () {
         if (hashes.includes(hash)) {
             fetch('/' + hash + '.html', {
                 headers: {
-                    accept: HTMLMIMEType
+                    accept: 'text/html; charset=utf-8'
                 }
             })
                 .then(response => {
@@ -90,7 +89,7 @@ const McCs = (function () {
                         const firstNewlineIndex = text.indexOf('\n');
                         text = firstNewlineIndex !== -1 ? text.slice(firstNewlineIndex + 1) : text;
                     }
-                    const doc = new DOMParser().parseFromString(text, HTMLMIMEType);
+                    const doc = new DOMParser().parseFromString(text, 'text/html');
                     document.body.replaceWith(doc.body);
                     doc.querySelectorAll('script').forEach(script => {
                         if (script.type === 'importmap') {
@@ -102,7 +101,7 @@ const McCs = (function () {
                             }
                             fetch(script.src, {
                                 headers: {
-                                    accept: 'text/javascript'
+                                    accept: 'text/javascript; charset=utf-8'
                                 }
                             })
                                 .then(async (response) => new Function(await response.text())());
