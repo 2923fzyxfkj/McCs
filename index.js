@@ -1,6 +1,6 @@
 const McCs = (function () {
     /** @type {McCs} */
-    const exports = {
+    const exports = new Proxy({
         commandResultProcesser(command, ...moreInfo) {
             alert(`命令: ${command}\n你可以直接粘贴(Ctrl+V)命令到MC中执行`);
             navigator.clipboard.writeText(command);
@@ -19,8 +19,22 @@ const McCs = (function () {
             hashChangeHandler();
         },
         HTMLMIMEType: 'text/html'
-    };
+    }, {
+        set() { return false },
+        setPrototypeOf() { return !inited },
+        deleteProperty() { return false },
+        defineProperty() { return false }
+    });
+
+    const HTMLMIMEType = exports.HTMLMIMEType;
+    let inited = false;
+    let hashes = [];
+    let hashHandlers = [];
+    let registeredFirstRouter = false;
+
     Object.setPrototypeOf(exports, null);
+
+    inited = true;
     
     const hashChangeHandler = () => {
         const hash = location.hash.slice(2);
@@ -50,7 +64,13 @@ const McCs = (function () {
                     const doc = new DOMParser().parseFromString(text, HTMLMIMEType);
                     document.body.replaceWith(doc.body);
                     doc.querySelectorAll('script').forEach(script => {
+                        if (script.type === 'importmap') {
+                            return;
+                        }
                         if (script.src) {
+                            if (script.type === 'module') {
+                                console.warn('动态加载暂不支持模块。接下来很可能紧接着出现一个报错。');
+                            }
                             fetch(script.src, {
                                 headers: {
                                     accept: 'text/javascript'
@@ -76,11 +96,6 @@ const McCs = (function () {
             }
         }
     };
-
-    const HTMLMIMEType = exports.HTMLMIMEType;
-    let hashes = [];
-    let hashHandlers = [];
-    let registeredFirstRouter = false;
 
     return exports;
 })();
