@@ -1,4 +1,18 @@
 const McCs = (function () {
+    const createAntiInfiltrateHandler = (/** @type {boolean} */ returnNotInited) => {
+        return (_, key) => {
+            if (inited && !validKeys.includes(key)) {
+                console.warn('bro就你想渗透');
+                return false;
+            } else {
+                return true;
+            }
+        };
+    }
+
+    /** @type {(keyof McCs)[]} */
+    const validKeys = ['commandResultProcesser', 'registerRouter', 'HTMLMIMEType', 'summon'];
+
     /** @type {McCs} */
     const exports = new Proxy({
         commandResultProcesser(command, ...moreInfo) {
@@ -20,10 +34,10 @@ const McCs = (function () {
         },
         HTMLMIMEType: 'text/html'
     }, {
-        set() { return false },
-        setPrototypeOf() { return !inited },
-        deleteProperty() { return false },
-        defineProperty() { return false }
+        set: createAntiInfiltrateHandler(),
+        setPrototypeOf: createAntiInfiltrateHandler(true),
+        deleteProperty: createAntiInfiltrateHandler(),
+        defineProperty: createAntiInfiltrateHandler()
     });
 
     const HTMLMIMEType = exports.HTMLMIMEType;
@@ -35,7 +49,7 @@ const McCs = (function () {
     Object.setPrototypeOf(exports, null);
 
     inited = true;
-    
+
     const hashChangeHandler = () => {
         const hash = location.hash.slice(2);
         if (hashes.includes(hash)) {
