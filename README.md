@@ -1,5 +1,7 @@
 # McCs
 ## Minecraft Command Summon
+## 先用`2923fzyxfkj`做的V1.0.2版
+## 这个Bug有亿点点多
 - `McCs`是一个对于《我的世界》命令生成器
     * `McCs`使用`Python`驱动,使用`HTML`网页
     * `McCs`使用`Python`开服后请进入127.0.0.1:8080访问
