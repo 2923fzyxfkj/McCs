@@ -11,7 +11,7 @@ const McCs = (function () {
         },
         registerRouter(options) {
             const HTMLMIMEType = 'text/html';
-            hashes = [...new Set([...options.filter(item => typeof item === 'string').concat(options.filter(item => Array.isArray(item)).map(item => item[0])), hashes])];
+            hashes = [...new Set(options.filter(item => typeof item === 'string').concat(options.filter(item => Array.isArray(item)).map(item => item[0])))].concat(hashes);
             hashHandlers.concat(options);
             if (!registeredFirstRouter) {
                 window.addEventListener('hashchange', () => {
