@@ -30,7 +30,13 @@ const server = http.createServer(async (req, res) => {
         process.stdout.write(req.method + ' ' + req.url);
         res.statusCode = 200;
     
-        const file = await readFile(req.url === '/' ? 'main.html' : filepath)
+        if (req.url === '/' || req.url === '/index.html' || req.url === '') {
+            res.statusCode = 302;
+            res.setHeader('Location', '/main.html');
+            res.end();
+            console.log(' |', res.statusCode);
+        }
+        const file = await readFile(filepath)
             .then(data => {
                 const encoding = chardet.detect(data);
 
