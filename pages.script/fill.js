@@ -9,13 +9,15 @@ McCs.summon = () => {
         case (id == ""):
             alert("ID不能为空")
             console.error("Variable \"ID\" is null")
-
+            break
         case (start == ""):
             alert("起始不能为空")
             console.error("Variable \"Start\" is null")
+            break
         case (end == ""):
             alert("结束不能为空")
             console.error("Variable \"End\" is null")
+            break
         default:
             return
     }

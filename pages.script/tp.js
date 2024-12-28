@@ -8,10 +8,11 @@ McCs.summon = () => {
         case (player1 == ""):
             alert("玩家1不能为空")
             console.error("Variable \"player1\" is null")
-
+            break
         case (player2 == ""):
             alert("玩家2不能为空")
             console.error("Variable \"player2\" is null")
+            break
         default:
             return
     }
