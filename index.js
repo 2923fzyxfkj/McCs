@@ -21,7 +21,15 @@ const McCs = (function () {
             }
             hashChangeHandler();
         },
-        HTMLMIMEType: 'text/html'
+        getFetchOptions(mime) {
+            return {
+                headers: {
+                    accept: `${mime}; charset=utf-8`,
+                    'cache-control': 'no-cache'
+                },
+                cache: 'no-cache'
+            }
+        }
     }, {
         set() {
             if (!validExternalKeys.includes(arguments[1])) {
@@ -68,11 +76,7 @@ const McCs = (function () {
     const hashChangeHandler = () => {
         const hash = location.hash.slice(2);
         if (hashes.includes(hash)) {
-            fetch('/' + hash + '.html', {
-                headers: {
-                    accept: 'text/html; charset=utf-8'
-                }
-            })
+            fetch('/' + hash + '.html', exports.getFetchOptions('text/html'))
                 .then(response => {
                     if (!response.ok) {
                         console.groupCollapsed('网络报错信息');
@@ -98,21 +102,17 @@ const McCs = (function () {
                             if (script.type === 'module') {
                                 console.warn('动态加载暂不支持模块。接下来很可能紧接着出现一个报错。');
                             }
-                            fetch(script.src, {
-                                headers: {
-                                    accept: 'text/javascript; charset=utf-8'
-                                }
-                            })
+                            fetch(script.src, exports.getFetchOptions('text/javascript'))
                                 .then(async (response) => new Function(await response.text())());
                         } else {
-                            new Function(script.textContent);
+                            new Function(script.textContent)();
                         }
                     });
                 });
         }
-        const indexOfHashOfHashesOrHashsAndHandlers = hashes.indexOf(hash);
-        if (Array.isArray(indexOfHashOfHashesOrHashsAndHandlers)) {
-            const handler = indexOfHashOfHashesOrHashsAndHandlers[1];
+        const indexOfHashOfHashHandlers = hashes.indexOf(hash);
+        if (Array.isArray(indexOfHashOfHashHandlers)) {
+            const handler = indexOfHashOfHashHandlers[1];
             if (typeof handler === 'function') {
                 handler(location);
             }
