@@ -3,7 +3,6 @@
 简体中文 | [English](./README_en.md)
 
 ## Minecraft Command Summon
-## 请先去[Node官网](https://github.com/2923fzyxfkj/McCs.git)安装Node后运行`server`文件夹的`运行服务器.bat`
 - `McCs`是一个对于《我的世界》命令生成器
     * `McCs`使用`Python`驱动,使用`HTML`网页
     * `McCs`使用`Python`开服后请进入127.0.0.1:8080访问
