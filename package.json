@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "chardet": "^2.0.0",
+    "mime": "^4.0.6"
+  }
+}
