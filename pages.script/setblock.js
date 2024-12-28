@@ -8,10 +8,11 @@ McCs.summon = () => {
         case (id == ""):
             alert("ID不能为空")
             console.error("Variable \"ID\" is null")
-
+            break
         case (position == ""):
             alert("坐标不能为空")
             console.error("Variable \"Position\" is null")
+            break
         default:
             return
     }
