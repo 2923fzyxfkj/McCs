@@ -85,6 +85,7 @@ const McCs = (function () {
                         console.groupEnd();
                         alert('网络错误! 请重试\n可在控制台查看详情');
                     }
+
                     return response.text();
                 })
                 .then(text => {
@@ -92,8 +93,10 @@ const McCs = (function () {
                         const firstNewlineIndex = text.indexOf('\n');
                         text = firstNewlineIndex !== -1 ? text.slice(firstNewlineIndex + 1) : text;
                     }
+
                     const doc = new DOMParser().parseFromString(text, 'text/html');
                     document.body.replaceWith(doc.body);
+                    
                     doc.querySelectorAll('script').forEach(script => {
                         if (script.type === 'importmap') {
                             throw new TypeError('不支持importmap');
@@ -110,6 +113,8 @@ const McCs = (function () {
                     });
                 });
         }
+
+
         const indexOfHashOfHashHandlers = hashes.indexOf(hash);
         if (Array.isArray(indexOfHashOfHashHandlers)) {
             const handler = indexOfHashOfHashHandlers[1];
