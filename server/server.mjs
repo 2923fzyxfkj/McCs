@@ -43,7 +43,8 @@ const server = http.createServer(async (req, res) => {
             console.log(' |', res.statusCode);
             return;
         }
-        const file = await readFile(filepath)
+
+        res.end(await readFile(filepath)
             .then(data => {
                 const encoding = chardet.detect(data);
 
@@ -58,8 +59,8 @@ const server = http.createServer(async (req, res) => {
                 } else {
                     reply500(res, e);
                 }
-            });
-        res.end(file);
+            }));
+        
         console.log(' |', res.statusCode);
     } catch (e) {
         reply500(res, e);
