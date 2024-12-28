@@ -16,4 +16,3 @@ export default function summon() {
     // 输出命令
     commandResultProcesser(command, mode);
 }
-console.log('success loaded gamemode.js')
