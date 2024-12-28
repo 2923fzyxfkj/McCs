@@ -35,6 +35,7 @@ const server = http.createServer(async (req, res) => {
             res.setHeader('Location', '/main.html');
             res.end();
             console.log(' |', res.statusCode);
+            return;
         }
         const file = await readFile(filepath)
             .then(data => {
