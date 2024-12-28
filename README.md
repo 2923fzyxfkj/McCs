@@ -2,6 +2,7 @@
 
 简体中文 | [English](./README_en.md)
 
+### ⚠️⚠️⚠️本项目不考虑兼容性，请使用最新版本的浏览器⚠️⚠️⚠️
 ## Minecraft Command Summon
 - `McCs`是一个对于《我的世界》命令生成器
     * `McCs`使用`Python`驱动,使用`HTML`网页
