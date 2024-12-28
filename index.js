@@ -53,7 +53,6 @@ const McCs = (function () {
             } else { // @ts-expect-error
                 return Reflect.defineProperty(...arguments);
             }
-            
         }
     });
 
