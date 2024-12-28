@@ -17,7 +17,7 @@ McCs.summon = () => {
             alert("结束不能为空")
             console.error("Variable \"End\" is null")
         default:
-            break
+            return
     }
     // 输出命令
     McCs.commandResultProcesser(command, id, start, end)

@@ -13,7 +13,7 @@ McCs.summon = () => {
             alert("坐标不能为空")
             console.error("Variable \"Position\" is null")
         default:
-            break
+            return
     }
     // 输出命令
     McCs.commandResultProcesser(command, id, position);

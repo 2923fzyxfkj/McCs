@@ -14,7 +14,7 @@ McCs.summon = () => {
             alert("玩家不能为空")
             console.error("Variable \"player\" is null")
         default:
-            break
+            return
     }
     // 输出命令
     McCs.commandResultProcesser(command, id, player, nbt);

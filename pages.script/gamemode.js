@@ -9,6 +9,7 @@ McCs.summon = () => {
         // } else if ((mode != "1" || mode != "2" || mode != "3" || mode != "4") || (mode != "survive" || mode != "creative" || mode != "adventure" || mode != "spectator")) {
         //     alert("模式错误(模式不能为标示除外的字符)")
         //     console.warn("Variable \"mode\" is not gamemode")    // 这里有问题，我不知道怎么解决，所以先注释掉了
+        return
     }
     // 输出命令
     McCs.commandResultProcesser(command, mode);
