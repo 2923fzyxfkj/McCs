@@ -1,4 +1,6 @@
-McCs.summon = () => {
+import { commandResultProcesser } from "index";
+
+export default function summon() {
     // 获取输入框的值
     var id = document.getElementsByTagName("input")[0].value;
     var start = document.getElementsByTagName("input")[1].value;
@@ -22,5 +24,5 @@ McCs.summon = () => {
             return
     }
     // 输出命令
-    McCs.commandResultProcesser(command, id, start, end)
+    commandResultProcesser(command, id, start, end)
 }

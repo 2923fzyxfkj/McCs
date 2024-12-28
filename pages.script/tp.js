@@ -1,4 +1,6 @@
-McCs.summon = () => {
+import { commandResultProcesser } from "index";
+
+export default function summon() {
     // 获取输入框的值
     var player1 = document.getElementsByTagName("input")[0].value;
     var player2 = document.getElementsByTagName("input")[1].value;
@@ -17,5 +19,5 @@ McCs.summon = () => {
             return
     }
     // 输出命令
-    McCs.commandResultProcesser(command, player1, player2);
+    commandResultProcesser(command, player1, player2);
 }

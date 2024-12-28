@@ -1,4 +1,6 @@
-McCs.summon = () => {
+import { commandResultProcesser } from "index";
+
+export default function summon() {
     // 获取输入框的值
     var mode = document.getElementsByTagName("input")[0].value;
     // 拼接命令
@@ -12,5 +14,6 @@ McCs.summon = () => {
         return
     }
     // 输出命令
-    McCs.commandResultProcesser(command, mode);
+    commandResultProcesser(command, mode);
 }
+console.log('success loaded gamemode.js')
