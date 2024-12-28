@@ -6,18 +6,17 @@ export default function summon() {
     var position = document.getElementsByTagName("input")[1].value;
     // 拼接命令
     var command = "/summon " + position + " " + "minecraft:" + id;
-    switch (undefined) {
-        case (id == ""):
-            alert("ID不能为空")
-            console.error("Variable \"ID\" is null")
-            break
-        case (position == ""):
-            alert("坐标不能为空")
-            console.error("Variable \"Position\" is null")
-            break
-        default:
-            return
+    if (id === '' || position === '') {
+        if (id == "") {
+            alert("ID不能为空");
+            console.error("Variable \"id\" is null");
+        } else if (position == "") {
+            alert("坐标不能为空");
+            console.error("Variable \"position\" is null");
+        }
+        return;
     }
+
     // 输出命令
     commandResultProcesser(command, id, position);
 }
