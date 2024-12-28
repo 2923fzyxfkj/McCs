@@ -13,7 +13,7 @@ const port = 3000;
 function reply500(res, e) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSONStringifyWithNonEnumerable(e));
+    res.end(JSONStringifyWithNonEnumerable(Object.assign(e, { '': 'Server Internal Throws Error' })));
 
     console.error(e);
 }
