@@ -13,20 +13,26 @@ const port = 3000;
 function reply500(res, e) {
     res.statusCode = 500;
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({
-        '': 'Internal Server Throws Error',
-        message: e.message,
-        stack: e.stack,
-        code: e.code,
-    }));
+    res.end(JSONStringifyWithNonEnumerable(e));
 
     console.error(e);
+}
+
+/**
+ * @param {object} obj
+ */
+function JSONStringifyWithNonEnumerable(obj) {
+    let allProps = {};
+    let keys = Reflect.ownKeys(obj);
+    for (let key of keys) {
+        allProps[key] = obj[key];
+    }
+    return JSON.stringify(allProps);
 }
 
 const server = http.createServer(async (req, res) => {
     try {
         const filepath = req.url.slice(1);
-
         process.stdout.write(req.method + ' ' + req.url);
         res.statusCode = 200;
     
