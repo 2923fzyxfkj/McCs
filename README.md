@@ -57,3 +57,4 @@
     * 这次总能火了吧
     * )
 * 谁能帮我写写README呀!
+* 版本列表可在[HISTORY.md](./HISTORY.md)查看。

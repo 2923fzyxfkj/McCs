@@ -53,3 +53,4 @@
     * This time it should go viral, right?
     * )
 * Who can help me write the README?
+* The version list can see on [HISTORY_en.md](./HISTORY_en.md).
