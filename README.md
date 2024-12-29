@@ -1,7 +1,7 @@
 # McCs
 
 简体中文 | [English](./README_en.md)
-
+### 暂时停止维护
 ### ⚠️⚠️⚠️本项目不考虑兼容性，请使用最新版本的浏览器⚠️⚠️⚠️
 ## Minecraft Command Summon
 ## 请先去[Node官网](https://nodejs.org)安装Node后运行`server`文件夹的<del>`运行服务器.bat`</del>先运行`先点我.exe`再运行`运行服务器.exe`
