@@ -3,6 +3,8 @@
 [简体中文](./README.md) | English
 
 **The English version of the READMEs is lagging behind!**
+=======
+### ⚠️⚠️⚠️This project does not consider compatibility, please use the latest version of the browser⚠️⚠️⚠️
 ## Minecraft Command Summon
 - `McCs` is a command generator for Minecraft.
 * `McCs` is driven by `Python` and uses `HTML` web pages.
