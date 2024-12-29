@@ -30,7 +30,7 @@ let registeredFirstRouter = false;
 function hashChangeHandler() {
     const hash = location.hash.slice(2);
     if (hashes.includes(hash)) {
-        fetch('/' + hash + '.html', getFetchOptions('text/html'))
+        fetch(hash + '.html', getFetchOptions('text/html'))
             .then(response => {
             if (!response.ok) {
                 console.groupCollapsed('网络报错信息');
