@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Summon command - /fill</title>
+        <script>
+            function end(runFunc) {
+                var dimension = document.getElementById("player").value; // shit代码
+                sessionStorage.setItem("dimension", dimension);
+                if (runFunc == 1) {
+                    run();
+                } else if (runFunc == 2) {
+                    at();
+                }
+            }
+            function run() {
+                window.location.href = "./as.run.html";
+            }
+            function at() {
+                window.location.href = "./as.at.html";
+            }
+        </script>
+    </head>
+    <body>
+        <input type="text" id="player" placeholder="维度/Dimension">
+        <button onclick="end(1)">运行指令</button>
+        <button onclick="end(2)">to维度</button>
+    </body>
+</html>

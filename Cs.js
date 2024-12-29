@@ -4,5 +4,6 @@ registerRouter([
     'setblock',
     'fill',
     'gamemode',
-    'give'
+    'give',
+    'execute'
 ]);
